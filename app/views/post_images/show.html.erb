@@ -40,7 +40,14 @@
 
               <li>
                 <i class="fa fa-comment"></i>
-                <%= @post_image.created_at.strftime('%Y/%m/%d') %>
+                <a href="#comments"><%= @post_image.post_comments.count %></a>
+              </li>
+              <li>
+                <!-- 現在ログインしているユーザが投稿者だった場合 -->
+                <% if @post_image.user == current_user %>
+                 <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+                <% end %>
+                <!-- ---------削除ボタンを表示する--------- -->
               </li>
             </ul>
 
